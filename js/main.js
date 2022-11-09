@@ -1062,11 +1062,11 @@ window.onload = function () {
             })
         })
     }
-    const toggleChoice = (wrapperSelector, isResultChoice) => {
+    const toggleChoice = (wrapperSelector, listSelector, isResultChoice) => {
         const wrapper = document.querySelector(wrapperSelector);
         if (wrapper) {
             let activeElement = wrapper.querySelector('.choice._active') || '';
-            if (wrapper) wrapper.addEventListener('click', (event) => {
+            if (wrapper) wrapper.querySelector(listSelector).addEventListener('click', (event) => {
                 event.stopPropagation();
                 const closest = event.target.closest('.choice');
                 if (event.target.classList.contains('choice') || closest) {
@@ -1097,8 +1097,8 @@ window.onload = function () {
             })
         }
     }
-    toggleChoice('.linking-block[data-block="self-delivery"]');
-    toggleChoice('.ordering__section[data-end="true"]', true);
+    toggleChoice('.linking-block[data-block="self-delivery"]', '.ordering__data', false);
+    toggleChoice('.ordering__section[data-end="true"]', '.ordering__choices', true);
 
     const orderingProductsWrapper = document.querySelector('.ordering__orders[data-block=products]');
     let orderingProductsButton;
